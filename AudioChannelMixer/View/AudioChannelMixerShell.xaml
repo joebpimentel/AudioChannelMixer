@@ -1,0 +1,24 @@
+﻿<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:viewModel="clr-namespace:AudioChannelMixer.ViewModel"
+        xmlns:view="clr-namespace:AudioChannelMixer.View"
+        x:Class="AudioChannelMixer.View.AudioChannelMixerShell"
+        Title="Audio Channel Mixer"
+        Height="350"
+        Width="525">
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type viewModel:MixerViewModel}">
+            <view:MixerView />
+        </DataTemplate>
+    </Window.Resources>
+    <Window.DataContext>
+        <viewModel:AudioChannelViewModel />
+    </Window.DataContext>
+    <Grid>
+        <ContentControl Content="{Binding CurrentViewModel}" />
+
+        <!--<Customers:CustomerListView />-->
+
+
+    </Grid>
+</Window>
