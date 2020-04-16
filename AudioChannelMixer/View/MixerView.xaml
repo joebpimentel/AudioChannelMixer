@@ -5,6 +5,7 @@
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
              xmlns:viewModel="clr-namespace:AudioChannelMixer.ViewModel"
+             xmlns:view="clr-namespace:AudioChannelMixer.View"
              x:Class="AudioChannelMixer.View.MixerView"
              mc:Ignorable="d"
              d:DesignHeight="300"
@@ -19,19 +20,19 @@
             </Border>
         </DataTemplate>-->
     </UserControl.Resources>
-    <UserControl.InputBindings>
+    <!--<UserControl.InputBindings>
         <KeyBinding Key="D"
                     Modifiers="Control"
                     Command="{Binding DeleteCommand}" />
-    </UserControl.InputBindings>
+    </UserControl.InputBindings>-->
     <UserControl.DataContext>
-        <viewModel:MixerViewModel />
+        <viewModel:AudioChannelMixerViewModel />
     </UserControl.DataContext>
-    <i:Interaction.Triggers>
+    <!--<i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <ei:CallMethodAction TargetObject="{Binding}" MethodName="LoadCustomers" />
         </i:EventTrigger>
-    </i:Interaction.Triggers>
+    </i:Interaction.Triggers>-->
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="100" />
@@ -44,7 +45,7 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            
+            <view:AudioVolumeLevelView/>
         </Grid>
         <StackPanel Grid.Row="2" />
     </Grid>

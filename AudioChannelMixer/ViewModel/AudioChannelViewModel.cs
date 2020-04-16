@@ -1,11 +1,15 @@
-﻿namespace AudioChannelMixer.ViewModel
+﻿using AudioChannelMixer.View;
+using Unity;
+
+namespace AudioChannelMixer.ViewModel
 {
-    public class AudioChannelViewModel
+    public class AudioChannelViewModel : IAudioChannelViewModel
     {
         public AudioChannelViewModel()
         {
-            CurrentViewModel = new MixerViewModel();
+            CurrentViewModel = new AudioChannelMixerViewModel();
         }
+
         public object CurrentViewModel { get; set; }
     }
 }

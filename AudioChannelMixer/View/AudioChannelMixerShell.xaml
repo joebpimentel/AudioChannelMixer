@@ -7,18 +7,16 @@
         Height="350"
         Width="525">
     <Window.Resources>
-        <DataTemplate DataType="{x:Type viewModel:MixerViewModel}">
+        <DataTemplate DataType="{x:Type viewModel:AudioChannelMixerViewModel}">
             <view:MixerView />
         </DataTemplate>
     </Window.Resources>
     <Window.DataContext>
-        <viewModel:AudioChannelViewModel />
+        <viewModel:AudioChannelMixerViewModel />
     </Window.DataContext>
     <Grid>
-        <ContentControl Content="{Binding CurrentViewModel}" />
-
+        <view:MixerView/>
+        <!--<ContentControl Content="{Binding CurrentViewModel}" />-->
         <!--<Customers:CustomerListView />-->
-
-
     </Grid>
 </Window>

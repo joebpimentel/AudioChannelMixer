@@ -1,0 +1,35 @@
+﻿<UserControl x:Class="AudioChannelMixer.View.InputPanelView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:AudioChannelMixer.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="150" d:DesignWidth="500">
+    <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0"
+            VerticalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition MinWidth="300"/>
+                <ColumnDefinition Width="30"/>
+            </Grid.ColumnDefinitions>
+            <TextBox Grid.Column="0" 
+                     HorizontalAlignment="Stretch" 
+                     Margin="10,0"
+                     Height="23"
+                     Text="" 
+                     VerticalAlignment="Center" />
+            <Button Grid.Column="1" 
+                    Content="..." 
+                    HorizontalContentAlignment="Center" 
+                    VerticalContentAlignment="Center" 
+                    Height="30"
+                    Width="30"/>
+        </Grid>
+        <local:CompositeVolumeLevelView Grid.Row="1" />
+    </Grid>
+</UserControl>

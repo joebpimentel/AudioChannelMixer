@@ -2,9 +2,9 @@
 
 namespace AudioChannelMixer.ViewModel
 {
-    public class MixerViewModel : INotifyPropertyChanged
+    public class AudioChannelMixerViewModel : INotifyPropertyChanged
     {
-        public MixerViewModel()
+        public AudioChannelMixerViewModel()
         {
             DeleteCommand = new RelayCommand(OnDelete,CanDelete);
         }
