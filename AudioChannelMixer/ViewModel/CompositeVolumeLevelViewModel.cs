@@ -15,6 +15,6 @@ namespace AudioChannelMixer.ViewModel
 
         }
 
-        public ObservableCollection<AudioVolumeLevelViewModel> Audios;
+        public ObservableCollection<AudioVolumeLevelViewModel> Audios { get; }
     }
 }

@@ -16,7 +16,6 @@ namespace AudioChannelMixer
             containerRegistry.Register<IAudioChannelMixerShell, AudioChannelMixerShell>();
             containerRegistry.Register<IAudioVolumeLevelView, AudioVolumeLevelView>();
             containerRegistry.Register<IAudioChannelViewModel, AudioChannelViewModel>();
-            
         }
 
         protected override Window CreateShell()

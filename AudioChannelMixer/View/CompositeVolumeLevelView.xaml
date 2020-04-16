@@ -12,9 +12,14 @@
     </UserControl.DataContext>
     <Grid>
         <ListBox ItemsSource="{Binding Audios}">
-            <ListBox.Items>
-                <view:AudioVolumeLevelView />
-            </ListBox.Items>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        
+                        <view:AudioVolumeLevelView/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
         </ListBox>
     </Grid>
 </UserControl>
