@@ -5,21 +5,33 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:view="clr-namespace:AudioChannelMixer.View"
              xmlns:viewModel="clr-namespace:AudioChannelMixer.ViewModel"
+             xmlns:prism="http://prismlibrary.com/"
              mc:Ignorable="d" 
-             d:DesignHeight="120" d:DesignWidth="400">
+             d:DesignHeight="140" d:DesignWidth="400"
+             prism:ViewModelLocator.AutoWireViewModel="true">
     <UserControl.DataContext>
         <viewModel:CompositeVolumeLevelViewModel />
     </UserControl.DataContext>
-    <Grid>
-        <ListBox ItemsSource="{Binding Audios}">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel>
-                        
-                        <view:AudioVolumeLevelView/>
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-    </Grid>
+    <Expander  HorizontalContentAlignment="Stretch"
+               ToolTip="Expand to control individual channel volume levels" IsExpanded="True">
+        <Expander.Header >
+            <Grid Width="Auto">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="35"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Height="30"
+                       Content="{Binding SourceName}"/>
+                <view:AudioVolumeLevelView DataContext="{Binding MasterVolume}" Grid.Row="1" Width="370"/>
+            </Grid>
+        </Expander.Header>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="35"/>
+                <RowDefinition Height="35"/>
+            </Grid.RowDefinitions>
+            <view:AudioVolumeLevelView Grid.Row="0"  DataContext="{Binding LeftChannel}"/>
+            <view:AudioVolumeLevelView Grid.Row="1" DataContext="{Binding RightChannel}" />
+        </Grid>
+    </Expander>
 </UserControl>

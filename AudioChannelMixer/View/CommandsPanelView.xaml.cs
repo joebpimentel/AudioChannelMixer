@@ -1,11 +1,9 @@
-﻿using System.Windows.Controls;
-
-namespace AudioChannelMixer.View
+﻿namespace AudioChannelMixer.View
 {
     /// <summary>
     /// Interaction logic for CommandPanel.xaml
     /// </summary>
-    public partial class CommandPanelView : UserControl
+    public partial class CommandPanelView
     {
         public CommandPanelView()
         {

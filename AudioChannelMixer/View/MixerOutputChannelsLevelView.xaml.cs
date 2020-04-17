@@ -1,11 +1,9 @@
-﻿using System.Windows.Controls;
-
-namespace AudioChannelMixer.View
+﻿namespace AudioChannelMixer.View
 {
     /// <summary>
     /// Interaction logic for MixerOutputChannelsLevelView.xaml
     /// </summary>
-    public partial class MixerOutputChannelsLevelView : UserControl
+    public partial class MixerOutputChannelsLevelView
     {
         public MixerOutputChannelsLevelView()
         {

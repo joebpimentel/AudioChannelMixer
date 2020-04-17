@@ -1,6 +1,6 @@
 ﻿namespace AudioChannelMixer.View
 {
-    public interface IAudioChannelMixerShell
+    public interface IAudioChannelMixerView 
     {
     }
 }
