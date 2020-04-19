@@ -2,7 +2,7 @@
 
 namespace AudioChannelMixer.View
 {
-    public interface IAudioChannelMixerView : IView
+    public interface ICompositeVolumeLevelView : IView
     {
     }
 }

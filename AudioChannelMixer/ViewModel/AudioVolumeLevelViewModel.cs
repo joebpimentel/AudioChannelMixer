@@ -1,9 +1,8 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using AudioChannelMixer.Annotations;
 using AudioChannelMixer.Services;
-using Unity;
+using Microsoft.Practices.Unity;
 
 namespace AudioChannelMixer.ViewModel
 {
@@ -27,6 +26,12 @@ namespace AudioChannelMixer.ViewModel
             Console.WriteLine(audios.Keys.ToString());
         }
 
+        public AudioVolumeLevelViewModel((int level, string name) channel)
+        {
+            VolumeLevel = channel.level;
+            ChannelName = channel.name;
+        }
+
         public int VolumeLevel
         {
             get => _volumeLevel;
@@ -47,7 +52,6 @@ namespace AudioChannelMixer.ViewModel
             }
         }
 
-        [NotifyPropertyChangedInvocator]
         private void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

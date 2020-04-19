@@ -5,25 +5,25 @@ using Microsoft.Practices.Unity;
 namespace AudioChannelMixer.View
 {
     /// <summary>
-    /// Interaction logic for SliderComposite.xaml
+    /// Interaction logic for AudioChannelMixerView.xaml
     /// </summary>
-    public partial class CompositeVolumeLevelView : ICompositeVolumeLevelView
+    public partial class AudioChannelMixerView : IAudioChannelMixerView
     {
-        public CompositeVolumeLevelView()
-        {
-            InitializeComponent();
-        }
-
+        //public AudioChannelMixerView()
+        //{
+        //    InitializeComponent();
+        //}
         [InjectionConstructor]
-        public CompositeVolumeLevelView(ICompositeVolumeLevelViewModel viewModel)
+        public AudioChannelMixerView(IAudioChannelMixerViewModel viewModel)
         {
             InitializeComponent();
             ViewModel = viewModel;
         }
 
+
         public IViewModel ViewModel
         {
-            get => (ICompositeVolumeLevelViewModel)DataContext;
+            get => (IAudioChannelMixerViewModel) DataContext;
             set => DataContext = value;
         }
     }

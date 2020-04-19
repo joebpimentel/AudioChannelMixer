@@ -21,7 +21,7 @@
                     <RowDefinition Height="35"/>
                 </Grid.RowDefinitions>
                 <Label Grid.Row="0" Height="30"
-                       Content="{Binding SourceName}"/>
+                       Content="{Binding SourceName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                 <view:AudioVolumeLevelView DataContext="{Binding MasterVolume}" Grid.Row="1" Width="370"/>
             </Grid>
         </Expander.Header>

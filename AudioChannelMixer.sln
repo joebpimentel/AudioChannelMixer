@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 15.0.28307.1062
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AudioChannelMixer", "AudioChannelMixer\AudioChannelMixer.csproj", "{0A69965E-2D37-440C-8B05-9E730224A8F9}"
+	ProjectSection(ProjectDependencies) = postProject
+		{9218B9B8-5753-4BC9-AC3E-3C4ADC4A6058} = {9218B9B8-5753-4BC9-AC3E-3C4ADC4A6058}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{490D845C-2682-44A4-A0F1-ABB0DE8295A3}"
 	ProjectSection(SolutionItems) = preProject
@@ -11,6 +14,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		LICENSE = LICENSE
 		README.md = README.md
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AudioChannelMixer.Infrastrucure", "Project1\AudioChannelMixer.Infrastrucure.csproj", "{9218B9B8-5753-4BC9-AC3E-3C4ADC4A6058}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -22,6 +27,10 @@ Global
 		{0A69965E-2D37-440C-8B05-9E730224A8F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0A69965E-2D37-440C-8B05-9E730224A8F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0A69965E-2D37-440C-8B05-9E730224A8F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9218B9B8-5753-4BC9-AC3E-3C4ADC4A6058}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9218B9B8-5753-4BC9-AC3E-3C4ADC4A6058}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9218B9B8-5753-4BC9-AC3E-3C4ADC4A6058}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9218B9B8-5753-4BC9-AC3E-3C4ADC4A6058}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

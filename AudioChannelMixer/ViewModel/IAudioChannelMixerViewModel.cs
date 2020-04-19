@@ -1,10 +1,11 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
+using AudioChannelMixer.Infrastrucure;
 
 namespace AudioChannelMixer.ViewModel
 {
-    public interface IAudioChannelMixerViewModel : INotifyPropertyChanged
+    public interface IAudioChannelMixerViewModel : IViewModel, INotifyPropertyChanged
     {
-        ObservableCollection<CompositeVolumeLevelViewModel> AudioSources { get; set; }
+        ObservableCollection<ICompositeVolumeLevelViewModel> AudioSources { get; set; }
     }
 }

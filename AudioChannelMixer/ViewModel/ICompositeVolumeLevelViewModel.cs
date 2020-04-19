@@ -1,8 +1,9 @@
 ﻿using System.ComponentModel;
+using AudioChannelMixer.Infrastrucure;
 
 namespace AudioChannelMixer.ViewModel
 {
-    public interface ICompositeVolumeLevelViewModel : INotifyPropertyChanged
+    public interface ICompositeVolumeLevelViewModel : IViewModel, INotifyPropertyChanged
     {
         IAudioVolumeLevelViewModel LeftChannel { get; set; }
 
