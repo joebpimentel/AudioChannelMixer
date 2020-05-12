@@ -4,7 +4,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
         xmlns:view="clr-namespace:AudioChannelMixer.View"
-        xmlns:viewModel="clr-namespace:AudioChannelMixer.ViewModel"  
+        xmlns:viewModel="clr-namespace:AudioChannelMixer.ViewModel"
+        xmlns:prism="http://prismlibrary.com/"
+        prism:ViewModelLocator.AutoWireViewModel="True"
         mc:Ignorable="d" 
         d:DataContext="{d:DesignInstance viewModel:AudioChannelMixerViewModel}"
         Width="800">
@@ -19,7 +21,7 @@
         </DataTemplate>-->
         <!--mvvm:ViewModelLocator.AutoWireViewModel="True"-->
         <!--<ContentControl x:Key="DataBinding" Content="{Binding viewModel:AudioChannelMixerViewModel}" />-->
-        <DataTemplate x:Key="CompositeVolumeLevelDataTemplate" DataType="{x:Type viewModel:CompositeVolumeLevelViewModel}">
+        <DataTemplate x:Key="CompositeVolumeLevelDataTemplate">
             <view:CompositeVolumeLevelView />
         </DataTemplate>
     </UserControl.Resources>
@@ -41,21 +43,21 @@
                     Height="100" />
         <Grid DockPanel.Dock="Bottom" >
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="100*" />
+                <RowDefinition MinHeight="300" />
+                <RowDefinition MinHeight="100" />
             </Grid.RowDefinitions>
             <Grid Grid.Row="0" 
                       ScrollViewer.VerticalScrollBarVisibility="Auto" 
-                      Width="Auto"
-                      Height="300">
+                      MinWidth="300"
+                      MinHeight="300">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
-                    <ColumnDefinition />
+                    <ColumnDefinition MinWidth="300" Width="Auto"/>
+                    <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
                 <!--<view:CompositeVolumeLevelView DataContext="{Binding CompositeSourceVolumeLevel}"/>-->
                 <ListView Grid.Column="0"
                       ItemsSource="{Binding AudioSources, UpdateSourceTrigger=PropertyChanged}" 
-                      ItemTemplate="{StaticResource CompositeVolumeLevelDataTemplate}"/>
+                      ItemTemplate="{StaticResource CompositeVolumeLevelDataTemplate}" Panel.ZIndex="-3"/>
             </Grid>
             <StackPanel Grid.Row="1" />
         </Grid>

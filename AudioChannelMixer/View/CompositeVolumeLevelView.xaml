@@ -6,12 +6,10 @@
              xmlns:view="clr-namespace:AudioChannelMixer.View"
              xmlns:viewModel="clr-namespace:AudioChannelMixer.ViewModel"
              xmlns:prism="http://prismlibrary.com/"
+             prism:ViewModelLocator.AutoWireViewModel="False"
              mc:Ignorable="d" 
-             d:DesignHeight="140" d:DesignWidth="400"
-             prism:ViewModelLocator.AutoWireViewModel="true">
-    <UserControl.DataContext>
-        <viewModel:CompositeVolumeLevelViewModel />
-    </UserControl.DataContext>
+             d:DataContext="{d:DesignInstance viewModel:CompositeVolumeLevelViewModel, IsDesignTimeCreatable=True}"
+             d:DesignHeight="140" d:DesignWidth="400" >
     <Expander  HorizontalContentAlignment="Stretch"
                ToolTip="Expand to control individual channel volume levels" IsExpanded="True">
         <Expander.Header >
@@ -22,7 +20,7 @@
                 </Grid.RowDefinitions>
                 <Label Grid.Row="0" Height="30"
                        Content="{Binding SourceName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                <view:AudioVolumeLevelView DataContext="{Binding MasterVolume}" Grid.Row="1" Width="370"/>
+                <view:AudioVolumeLevelView DataContext="{Binding MasterVolume}" Grid.Row="1" Width="370" Loaded="AudioVolumeLevelView_Loaded"/>
             </Grid>
         </Expander.Header>
         <Grid>

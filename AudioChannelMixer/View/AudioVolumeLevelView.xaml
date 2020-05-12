@@ -6,9 +6,10 @@
              xmlns:viewModel="clr-namespace:AudioChannelMixer.ViewModel"
              xmlns:converters="clr-namespace:AudioChannelMixer.Converters"
              xmlns:prism="http://prismlibrary.com/"
+             prism:ViewModelLocator.AutoWireViewModel="False"
              mc:Ignorable="d" 
-             d:DesignHeight="35" d:DesignWidth="400" RenderTransformOrigin="0.5,0.5"
-             prism:ViewModelLocator.AutoWireViewModel="True">
+             d:DataContext="{d:DesignInstance viewModel:AudioVolumeLevelViewModel, IsDesignTimeCreatable=True}"
+             d:DesignHeight="35" d:DesignWidth="400" RenderTransformOrigin="0.5,0.5">
     <UserControl.Resources>
         <DrawingImage x:Key="Volume_0">
             <DrawingImage.Drawing>
@@ -56,9 +57,6 @@
         </DrawingImage>
         <converters:VolumeLevelToIconIndexConverter x:Key="VolumeConverter"></converters:VolumeLevelToIconIndexConverter>
     </UserControl.Resources>
-    <UserControl.DataContext>
-        <viewModel:AudioVolumeLevelViewModel />
-    </UserControl.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="50"/>

@@ -1,18 +1,16 @@
 ﻿using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using System.Windows;
+using Prism.Mvvm;
 
 namespace AudioChannelMixer.ViewModel
 {
-    public sealed class CompositeVolumeLevelViewModel : ICompositeVolumeLevelViewModel
+    public sealed class CompositeVolumeLevelViewModel : BindableBase, ICompositeVolumeLevelViewModel
     {
         private static readonly bool isInDesignMode = DesignerProperties.GetIsInDesignMode(new DependencyObject());
         private IAudioVolumeLevelViewModel _leftChannel;
         private IAudioVolumeLevelViewModel _masterVolume;
         private IAudioVolumeLevelViewModel _rightChannel;
         private string _sourceName;
-
-        public event PropertyChangedEventHandler PropertyChanged;
 
         public CompositeVolumeLevelViewModel()
         {
@@ -51,46 +49,25 @@ namespace AudioChannelMixer.ViewModel
         public IAudioVolumeLevelViewModel LeftChannel
         {
             get => _leftChannel;
-            set
-            {
-                _leftChannel = value;
-                OnPropertyChanged(nameof(LeftChannel));
-            }
+            set => SetProperty(ref _leftChannel, value);
         }
 
         public IAudioVolumeLevelViewModel RightChannel
         {
             get => _rightChannel;
-            set
-            {
-                _rightChannel = value;
-                OnPropertyChanged(nameof(RightChannel));
-            }
+            set => SetProperty(ref _rightChannel, value);
         }
 
         public IAudioVolumeLevelViewModel MasterVolume
         {
             get => _masterVolume;
-            set
-            {
-                _masterVolume = value;
-                OnPropertyChanged(nameof(MasterVolume));
-            }
+            set => SetProperty(ref _masterVolume, value);
         }
 
         public string SourceName
         {
             get => _sourceName;
-            set
-            {
-                _sourceName = value;
-                OnPropertyChanged(nameof(SourceName));
-            }
-        }
-
-        private void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            set => SetProperty(ref _sourceName, value);
         }
     }
 }

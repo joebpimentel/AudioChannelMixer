@@ -1,17 +1,14 @@
 ﻿using System;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using AudioChannelMixer.Services;
 using Microsoft.Practices.Unity;
+using Prism.Mvvm;
 
 namespace AudioChannelMixer.ViewModel
 {
-    public sealed class AudioVolumeLevelViewModel : IAudioVolumeLevelViewModel
+    public sealed class AudioVolumeLevelViewModel : BindableBase, IAudioVolumeLevelViewModel
     {
         private int _volumeLevel;
         private string _channelName;
-
-        public event PropertyChangedEventHandler PropertyChanged;
 
         public AudioVolumeLevelViewModel()
         {
@@ -35,26 +32,13 @@ namespace AudioChannelMixer.ViewModel
         public int VolumeLevel
         {
             get => _volumeLevel;
-            set
-            {
-                _volumeLevel = value;
-                OnPropertyChanged(nameof(VolumeLevel));
-            }
+            set => SetProperty(ref _volumeLevel, value);
         }
 
         public string ChannelName
         {
             get => _channelName;
-            set
-            {
-                _channelName = value;
-                OnPropertyChanged(nameof(ChannelName));
-            }
-        }
-
-        private void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            set => SetProperty(ref _channelName, value);
         }
     }
 }

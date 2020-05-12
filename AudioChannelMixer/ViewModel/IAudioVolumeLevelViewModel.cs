@@ -1,8 +1,6 @@
-﻿using System.ComponentModel;
-
-namespace AudioChannelMixer.ViewModel
+﻿namespace AudioChannelMixer.ViewModel
 {
-    public interface IAudioVolumeLevelViewModel : INotifyPropertyChanged
+    public interface IAudioVolumeLevelViewModel
     {
         int VolumeLevel { get; set; }
 

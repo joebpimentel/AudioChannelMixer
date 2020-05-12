@@ -26,5 +26,10 @@ namespace AudioChannelMixer.View
             get => (ICompositeVolumeLevelViewModel)DataContext;
             set => DataContext = value;
         }
+
+        private void AudioVolumeLevelView_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+
+        }
     }
 }
