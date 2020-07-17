@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="AudioChannelMixer.View.CompositeVolumeLevelView"
+﻿<UserControl
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,21 +6,48 @@
              xmlns:view="clr-namespace:AudioChannelMixer.View"
              xmlns:viewModel="clr-namespace:AudioChannelMixer.ViewModel"
              xmlns:prism="http://prismlibrary.com/"
+             xmlns:System="clr-namespace:System;assembly=mscorlib" x:Class="AudioChannelMixer.View.CompositeVolumeLevelView"
              prism:ViewModelLocator.AutoWireViewModel="False"
              mc:Ignorable="d" 
-             d:DataContext="{d:DesignInstance viewModel:CompositeVolumeLevelViewModel, IsDesignTimeCreatable=True}"
-             d:DesignHeight="140" d:DesignWidth="400" >
-    <Expander  HorizontalContentAlignment="Stretch"
-               ToolTip="Expand to control individual channel volume levels" IsExpanded="True">
-        <Expander.Header >
+             d:DataContext="{d:DesignInstance {x:Type viewModel:CompositeVolumeLevelViewModel}, IsDesignTimeCreatable=True}"
+             d:DesignHeight="175" d:DesignWidth="400" >
+    <UserControl.Resources>
+        <System:Double x:Key="Padding">30</System:Double>
+    </UserControl.Resources>
+    <Expander
+        HorizontalContentAlignment="Stretch"
+        ToolTip="Expand to control individual channel volume levels" IsExpanded="True" >
+        <Expander.Header>
             <Grid Width="Auto">
                 <Grid.RowDefinitions>
-                    <RowDefinition/>
+                    <RowDefinition Height="35"/>
                     <RowDefinition Height="35"/>
                 </Grid.RowDefinitions>
-                <Label Grid.Row="0" Height="30"
-                       Content="{Binding SourceName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                <view:AudioVolumeLevelView DataContext="{Binding MasterVolume}" Grid.Row="1" Width="370" Loaded="AudioVolumeLevelView_Loaded"/>
+                <Grid Grid.Row="0" Height="40">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="3*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition MinWidth="300"/>
+                        <ColumnDefinition Width="30"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0"
+                           Content="{Binding SourceName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                           Height="{DynamicResource Padding}"/>
+                    <Button Grid.Column="1"  
+                            Content="..."     
+                            Command="{Binding ChooseFile}"                            
+                            HorizontalContentAlignment="Center" 
+                            VerticalContentAlignment="Center" 
+                            Height="30"
+                            Width="30" 
+                            Margin="0,5" Grid.Row="0"  
+                            HorizontalAlignment="Left" />
+                </Grid>
+                <view:AudioVolumeLevelView 
+                    Grid.Row="1" 
+                    DataContext="{Binding MasterVolume}"  
+                    Width="370" />
             </Grid>
         </Expander.Header>
         <Grid>
@@ -28,8 +55,8 @@
                 <RowDefinition Height="35"/>
                 <RowDefinition Height="35"/>
             </Grid.RowDefinitions>
-            <view:AudioVolumeLevelView Grid.Row="0"  DataContext="{Binding LeftChannel}"/>
-            <view:AudioVolumeLevelView Grid.Row="1" DataContext="{Binding RightChannel}" />
+            <view:AudioVolumeLevelView Grid.Row="0" DataContext="{Binding LeftChannel}"/>
+            <view:AudioVolumeLevelView Grid.Row="1"  DataContext="{Binding RightChannel}" />
         </Grid>
     </Expander>
 </UserControl>

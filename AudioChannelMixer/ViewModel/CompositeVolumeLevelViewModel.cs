@@ -1,5 +1,9 @@
 ﻿using System.ComponentModel;
+using System.Threading.Tasks;
 using System.Windows;
+using AudioChannelMixer.Infrastrucure.Command;
+using AudioChannelMixer.Models;
+using Microsoft.Win32;
 using Prism.Mvvm;
 
 namespace AudioChannelMixer.ViewModel
@@ -11,13 +15,14 @@ namespace AudioChannelMixer.ViewModel
         private IAudioVolumeLevelViewModel _masterVolume;
         private IAudioVolumeLevelViewModel _rightChannel;
         private string _sourceName;
+        private Audio _audio;
 
         public CompositeVolumeLevelViewModel()
         {
             if (isInDesignMode)
             {
 
-                SourceName = "Player X";
+                SourceName = "Media X";
                 LeftChannel = new AudioVolumeLevelViewModel
                 {
                     VolumeLevel = 30,
@@ -44,6 +49,8 @@ namespace AudioChannelMixer.ViewModel
             MasterVolume = new AudioVolumeLevelViewModel(masterChannel);
             LeftChannel = new AudioVolumeLevelViewModel(leftChannel);
             RightChannel = new AudioVolumeLevelViewModel(rightChannel);
+            ChooseFile = new AsyncCommand(ExecuteSubmitAsync, CanExecuteSubmit);
+            // _aggregator.GetEvent<FileNameChangeEvent>().Subscribe(OnPropertyChanged())
         }
 
         public IAudioVolumeLevelViewModel LeftChannel
@@ -68,6 +75,42 @@ namespace AudioChannelMixer.ViewModel
         {
             get => _sourceName;
             set => SetProperty(ref _sourceName, value);
+        }
+
+        public Audio Audio
+        {
+            get => _audio;
+            set => SetProperty(ref _audio, value);
+        }
+
+        public IAsyncCommand ChooseFile { get; private set; }
+
+        private bool CanExecuteSubmit()
+        {
+            return true;
+        }
+
+        private async Task ExecuteSubmitAsync()
+        {
+            var openFileDialog = new OpenFileDialog
+            {
+                Title = "Select Audio File",
+                Multiselect = false,
+                CheckFileExists = true,
+                CheckPathExists = true,
+                Filter = "Audio Files|*.mp3;*.ogg;*.wav" +
+                         "|All Files|*.*",
+                ReadOnlyChecked = true,
+                ShowReadOnly = true
+            };
+
+            if (openFileDialog.ShowDialog() == true)
+            {
+                SourceName = openFileDialog.FileName;
+            }
+
+            var x = openFileDialog.FileName;
+            await Task.FromResult(x);
         }
     }
 }

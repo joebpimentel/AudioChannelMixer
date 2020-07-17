@@ -1,15 +1,10 @@
 ﻿using AudioChannelMixer.Infrastrucure;
+using AudioChannelMixer.Infrastrucure.MVVM;
 
 namespace AudioChannelMixer.ViewModel
 {
-    public interface ICompositeVolumeLevelViewModel : IViewModel
+    public interface ICompositeVolumeLevelViewModel : IVolumeLevelModel
     {
-        IAudioVolumeLevelViewModel LeftChannel { get; set; }
-
-        IAudioVolumeLevelViewModel RightChannel { get; set; }
-
-        IAudioVolumeLevelViewModel MasterVolume { get; set; }
-
         string SourceName { get; set; }
     }
 }

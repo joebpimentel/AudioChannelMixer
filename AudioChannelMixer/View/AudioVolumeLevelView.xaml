@@ -55,20 +55,21 @@
                 </DrawingGroup>
             </DrawingImage.Drawing>
         </DrawingImage>
-        <converters:VolumeLevelToIconIndexConverter x:Key="VolumeConverter"></converters:VolumeLevelToIconIndexConverter>
+        <converters:VolumeLevelToIconIndexConverter x:Key="VolumeConverter"/>
     </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="{Binding PaddingWidth}"/>
             <ColumnDefinition Width="50"/>
             <ColumnDefinition Width="25"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="35"/>
         </Grid.ColumnDefinitions>
-        <Label Grid.Column="0"
+        <Label Grid.Column="1"
                Content="{Binding ChannelName}" 
-               HorizontalAlignment="Center"
+               HorizontalAlignment="Left"
                VerticalContentAlignment="Center" />
-        <Image Grid.Column="1" 
+        <Image Grid.Column="2" 
                HorizontalAlignment="Center"
                VerticalAlignment="Center"
                Margin="1">
@@ -91,13 +92,14 @@
                 </Style>
             </Image.Style>
         </Image>
-        <Slider Grid.Column="2"
+        <Slider Grid.Column="3"
                 Value="{Binding VolumeLevel, Mode=TwoWay}"
                 Maximum="100" 
+                Width="Auto"
                 HorizontalAlignment="Stretch" 
                 VerticalAlignment="Center" 
                 Foreground="{DynamicResource {x:Static SystemColors.ActiveCaptionTextBrushKey}}" Grid.RowSpan="2" SmallChange="33" AutoToolTipPlacement="TopLeft" TickFrequency="33" TickPlacement="BottomRight" />
-        <Label Grid.Column="3" 
+        <Label Grid.Column="4" 
                HorizontalContentAlignment="Center"
                VerticalContentAlignment="Center"
                Content="{Binding VolumeLevel}" />

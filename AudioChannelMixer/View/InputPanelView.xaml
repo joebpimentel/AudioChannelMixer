@@ -3,35 +3,32 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:AudioChannelMixer.View"
+             xmlns:viewModel="clr-namespace:AudioChannelMixer.ViewModel"
              xmlns:prism="http://prismlibrary.com/"
              prism:ViewModelLocator.AutoWireViewModel="True"
              mc:Ignorable="d" 
-             d:DesignHeight="150" d:DesignWidth="500">
-    <Grid >
+             d:DesignHeight="100" d:DesignWidth="500" Height="Auto" Width="Auto"
+             d:DataContext="{d:DesignInstance viewModel:InputPanelViewModel, IsDesignTimeCreatable=True}">
+    <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="35"/>
+            <RowDefinition Height="40"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Grid Grid.Row="0"
-            VerticalAlignment="Center">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition MinWidth="300"/>
-                <ColumnDefinition Width="30"/>
-            </Grid.ColumnDefinitions>
-            <TextBox Grid.Column="0" 
-                     HorizontalAlignment="Stretch" 
-                     Margin="10,0"
-                     Height="23"
-                     Text="" 
-                     VerticalAlignment="Center" />
-            <Button Grid.Column="1" 
-                    Content="..." 
-                    HorizontalContentAlignment="Center" 
-                    VerticalContentAlignment="Center" 
-                    Height="30"
-                    Width="30"/>
-        </Grid>
-        <local:CompositeVolumeLevelView Grid.Row="1" />
+        <StackPanel Margin="4" Grid.Row="0" Orientation="Horizontal">
+            <Button Margin="2" Height="25" Width="60" Content="Play"></Button>
+            <Button Margin="2" Height="25" Width="60" Content="Pause"></Button>
+            <Button Margin="2" Height="25" Width="60" Content="Rewind"></Button>
+            <Button Margin="2" Height="25" Width="60" Content="Forward"></Button>
+            <Button Margin="2" Height="25" Width="60" Content="Stop"></Button>
+        </StackPanel>
+        <Slider Grid.Row="1" 
+                Value="{Binding Audio.Duration, Mode=TwoWay}"
+                VerticalAlignment="Center"
+                SmallChange="1"
+                TickFrequency="1"
+                TickPlacement="BottomRight" 
+                SelectionStart="1" 
+                IsSnapToTickEnabled="True" 
+                IsHitTestVisible="True" AutoToolTipPlacement="TopLeft" />
     </Grid>
 </UserControl>

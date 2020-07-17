@@ -1,4 +1,5 @@
 ﻿using AudioChannelMixer.Infrastrucure;
+using AudioChannelMixer.Infrastrucure.MVVM;
 using AudioChannelMixer.ViewModel;
 using Microsoft.Practices.Unity;
 

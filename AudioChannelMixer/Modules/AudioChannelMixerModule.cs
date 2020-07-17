@@ -2,6 +2,7 @@
 using AudioChannelMixer.View;
 using AudioChannelMixer.ViewModel;
 using Microsoft.Practices.Unity;
+using Prism.Events;
 using Prism.Modularity;
 using Prism.Regions;
 
@@ -22,10 +23,7 @@ namespace AudioChannelMixer.Modules
         {
             _container.RegisterType<IAudioChannelMixerView, AudioChannelMixerView>();
             _container.RegisterType<IAudioChannelMixerViewModel, AudioChannelMixerViewModel>();
-
-            _container.RegisterType<ICompositeVolumeLevelView, CompositeVolumeLevelView>();
-            _container.RegisterType<ICompositeVolumeLevelViewModel, CompositeVolumeLevelViewModel>();
-
+            _container.RegisterInstance(new InputPanelViewModel());
             _manager.RegisterViewWithRegion(RegionNames.ContentRegion, typeof(AudioChannelMixerView));
         }
     }

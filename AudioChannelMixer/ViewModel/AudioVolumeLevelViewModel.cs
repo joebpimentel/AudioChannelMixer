@@ -19,7 +19,7 @@ namespace AudioChannelMixer.ViewModel
         [InjectionConstructor]
         public AudioVolumeLevelViewModel(IAudioService audioService)
         {
-            var audios = audioService.PlayersDictionary;
+            var audios = audioService.MediaDictionary;
             Console.WriteLine(audios.Keys.ToString());
         }
 
@@ -40,5 +40,7 @@ namespace AudioChannelMixer.ViewModel
             get => _channelName;
             set => SetProperty(ref _channelName, value);
         }
+
+        public double PaddingWidth => _channelName == "Master" ? 0.0 : 25.0;
     }
 }

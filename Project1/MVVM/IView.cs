@@ -1,4 +1,4 @@
-﻿namespace AudioChannelMixer.Infrastrucure
+﻿namespace AudioChannelMixer.Infrastrucure.MVVM
 {
     public interface IView
     {

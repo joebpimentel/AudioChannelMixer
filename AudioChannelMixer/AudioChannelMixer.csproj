@@ -26,6 +26,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -37,6 +38,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FFmpeg.AutoGen, Version=4.2.2.2, Culture=neutral, PublicKeyToken=9b7632533a381715, processorArchitecture=MSIL">
+      <HintPath>..\packages\FFmpeg.AutoGen.4.2.2.2\lib\net45\FFmpeg.AutoGen.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Expression.Interactions" />
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
@@ -50,6 +54,9 @@
     <Reference Include="Microsoft.Practices.Unity.RegistrationByConvention, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
       <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.RegistrationByConvention.dll</HintPath>
     </Reference>
+    <Reference Include="NAudio, Version=1.10.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\NAudio.1.10.0\lib\net35\NAudio.dll</HintPath>
+    </Reference>
     <Reference Include="Prism, Version=6.3.0.0, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
       <HintPath>..\packages\Prism.Core.6.3.0\lib\net45\Prism.dll</HintPath>
     </Reference>
@@ -61,6 +68,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.3\lib\netstandard1.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
@@ -70,6 +78,7 @@
     <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.ValueTuple.4.5.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
     </Reference>
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Prism.Wpf.6.3.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
     </Reference>
@@ -88,18 +97,31 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Bootstrapper.cs" />
+    <Compile Include="Converters\DurationToSecondsConverter.cs" />
     <Compile Include="Converters\VolumeLevelToIconIndexConverter.cs" />
+    <Compile Include="Events\SingletonEventAggregator.cs" />
+    <Compile Include="Events\FileNameChangeEvent.cs" />
+    <Compile Include="FFmpeg\AudioStreamDecoder.cs" />
+    <Compile Include="Models\Audio.cs" />
     <Compile Include="Modules\AudioChannelMixerModule.cs" />
+    <Compile Include="Services\AudioFrameConverter.cs" />
     <Compile Include="Services\AudioService.cs" />
+    <Compile Include="Services\AudioStream.cs" />
+    <Compile Include="FFmpeg\FFmpegBinariesHelper.cs" />
+    <Compile Include="FFmpeg\FFmpegHelper.cs" />
     <Compile Include="Services\IAudioService.cs" />
     <Compile Include="Shell.xaml.cs">
       <DependentUpon>Shell.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\AudioVolumeLevelViewModel.cs" />
     <Compile Include="ViewModel\CompositeVolumeLevelViewModel.cs" />
+    <Compile Include="Behaviors\DialogBehavior.cs" />
     <Compile Include="ViewModel\IAudioChannelMixerViewModel.cs" />
     <Compile Include="ViewModel\IAudioVolumeLevelViewModel.cs" />
     <Compile Include="ViewModel\ICompositeVolumeLevelViewModel.cs" />
+    <Compile Include="ViewModel\InputPanelViewModel.cs" />
+    <Compile Include="ViewModel\IVolumeLevelModel.cs" />
+    <Compile Include="ViewModel\MixerInputsViewModel.cs" />
     <Compile Include="View\AudioVolumeLevelView.xaml.cs">
       <DependentUpon>AudioVolumeLevelView.xaml</DependentUpon>
     </Compile>
@@ -119,8 +141,6 @@
       <DependentUpon>MixerOutputChannelsLevelView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\AudioChannelMixerViewModel.cs" />
-    <Compile Include="ViewModel\MvvmBehaviors.cs" />
-    <Compile Include="ViewModel\RelayCommand.cs" />
     <Compile Include="View\CompositeVolumeLevelView.xaml.cs">
       <DependentUpon>CompositeVolumeLevelView.xaml</DependentUpon>
     </Compile>
