@@ -105,11 +105,12 @@
     <Compile Include="Models\Audio.cs" />
     <Compile Include="Modules\AudioChannelMixerModule.cs" />
     <Compile Include="Services\AudioFrameConverter.cs" />
-    <Compile Include="Services\AudioService.cs" />
+    <Compile Include="Services\FFMpegAudioService.cs" />
     <Compile Include="Services\AudioStream.cs" />
     <Compile Include="FFmpeg\FFmpegBinariesHelper.cs" />
     <Compile Include="FFmpeg\FFmpegHelper.cs" />
     <Compile Include="Services\IAudioService.cs" />
+    <Compile Include="Services\NAudioMixerService.cs" />
     <Compile Include="Shell.xaml.cs">
       <DependentUpon>Shell.xaml</DependentUpon>
     </Compile>
@@ -121,7 +122,7 @@
     <Compile Include="ViewModel\ICompositeVolumeLevelViewModel.cs" />
     <Compile Include="ViewModel\InputPanelViewModel.cs" />
     <Compile Include="ViewModel\IVolumeLevelModel.cs" />
-    <Compile Include="ViewModel\MixerInputsViewModel.cs" />
+    <Compile Include="ViewModel\MixerOutputLevelViewModel.cs" />
     <Compile Include="View\AudioVolumeLevelView.xaml.cs">
       <DependentUpon>AudioVolumeLevelView.xaml</DependentUpon>
     </Compile>
@@ -134,18 +135,12 @@
     <Compile Include="View\InputPanelView.xaml.cs">
       <DependentUpon>InputPanelView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\MixerInputsView.xaml.cs">
-      <DependentUpon>MixerInputsView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\MixerOutputChannelsLevelView.xaml.cs">
-      <DependentUpon>MixerOutputChannelsLevelView.xaml</DependentUpon>
+    <Compile Include="View\MixerOutputLevelView.xaml.cs">
+      <DependentUpon>MixerOutputLevelView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\AudioChannelMixerViewModel.cs" />
     <Compile Include="View\CompositeVolumeLevelView.xaml.cs">
       <DependentUpon>CompositeVolumeLevelView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\AudioChannelMixerToolBarView.xaml.cs">
-      <DependentUpon>AudioChannelMixerToolBarView.xaml</DependentUpon>
     </Compile>
     <Page Include="Resouces\SpeakerHigh.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -167,11 +162,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\MixerInputsView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\MixerOutputChannelsLevelView.xaml">
+    <Page Include="View\MixerOutputLevelView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -188,10 +179,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="View\CompositeVolumeLevelView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\AudioChannelMixerToolBarView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

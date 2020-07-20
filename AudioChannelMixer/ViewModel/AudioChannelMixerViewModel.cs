@@ -1,6 +1,9 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Threading.Tasks;
 using System.Windows;
+using AudioChannelMixer.Infrastrucure.Command;
 using Prism.Mvvm;
 
 namespace AudioChannelMixer.ViewModel
@@ -9,18 +12,30 @@ namespace AudioChannelMixer.ViewModel
     {
         private static readonly bool isInDesignMode = DesignerProperties.GetIsInDesignMode(new DependencyObject());
         private ObservableCollection<ICompositeVolumeLevelViewModel> _audioSources;
+        private MixerOutputLevelViewModel _mixerVolumes;
 
         public AudioChannelMixerViewModel()
         {
-            // TODO: Since prism / unit versions are different I didn't succeed yet to make it work with DI
-            //if (!isInDesignMode)
-            //{
-            //    MessageBox.Show("Exception: You should not call this constructor in production mode", nameof(AudioChannelMixerViewModel));
-            //    throw new ApplicationException("Exception: You should not call this constructor in production mode");
-            //}
-            // View = new AudioChannelMixerView { ViewModel = this };
-            // AudioSources = new ObservableCollection<ICompositeVolumeLevelViewModel>();
+            AudioSources = new ObservableCollection<ICompositeVolumeLevelViewModel>();
+            AddAudio = new AsyncCommand(AddAudioCommandAsync, CanAddAudio);
             PopulateInstance();
+            if (isInDesignMode)
+            {
+                PopulateInstance();
+            }
+        }
+
+        public IAsyncCommand AddAudio { get; }
+
+        private async Task AddAudioCommandAsync()
+        {
+            AudioSources.Add(new CompositeVolumeLevelViewModel());
+            await Task.FromResult(0);
+        }
+
+        private bool CanAddAudio()
+        {
+            return AudioSources.Count < 4;
         }
 
         // public RelayCommand DeleteCommand { get; private set; }
@@ -31,14 +46,18 @@ namespace AudioChannelMixer.ViewModel
             set => SetProperty(ref _audioSources, value);
         }
 
-        public MixerInputsViewModel MixerVolumes { get; set; }
+        public MixerOutputLevelViewModel MixerVolumes
+        {
+            get => _mixerVolumes;
+            set => SetProperty(ref _mixerVolumes, value);
+        }
 
         private void PopulateInstance()
         {
             ICompositeVolumeLevelViewModel audioSource1 = new CompositeVolumeLevelViewModel("Player 1", (level: 0, name: "Master"), (level: 50, name: "Left"), (level: 100, name: "Right"));
             ICompositeVolumeLevelViewModel audioSource2 = new CompositeVolumeLevelViewModel("Player 2", (level: 33, name: "Master"), (level: 66, name: "Left"), (level: 99, name: "Right"));
             AudioSources = new ObservableCollection<ICompositeVolumeLevelViewModel> { audioSource1, audioSource2 };
-            MixerVolumes = new MixerInputsViewModel((level: 30, name: "Master"), (level: 50, name: "Left"), (level: 100, name: "Right"));
+            MixerVolumes = new MixerOutputLevelViewModel((level: 30, name: "Master"), (level: 50, name: "Left"), (level: 100, name: "Right"));
         }
     }
 }

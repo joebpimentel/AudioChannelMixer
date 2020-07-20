@@ -95,7 +95,6 @@
         <Slider Grid.Column="3"
                 Value="{Binding VolumeLevel, Mode=TwoWay}"
                 Maximum="100" 
-                Width="Auto"
                 HorizontalAlignment="Stretch" 
                 VerticalAlignment="Center" 
                 Foreground="{DynamicResource {x:Static SystemColors.ActiveCaptionTextBrushKey}}" Grid.RowSpan="2" SmallChange="33" AutoToolTipPlacement="TopLeft" TickFrequency="33" TickPlacement="BottomRight" />

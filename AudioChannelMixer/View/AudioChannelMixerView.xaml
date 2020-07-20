@@ -8,57 +8,49 @@
         xmlns:prism="http://prismlibrary.com/"
         prism:ViewModelLocator.AutoWireViewModel="True"
         mc:Ignorable="d" 
-        d:DataContext="{d:DesignInstance viewModel:AudioChannelMixerViewModel}"
-        Width="800">
+        d:DataContext="{d:DesignInstance viewModel:AudioChannelMixerViewModel}">
     <UserControl.Resources>
-        <!--<DataTemplate x:Key="ButtonsTemplate">
-            <Border BorderThickness="3"
-                    BorderBrush="Blue">
-                <StackPanel DataContext="{Binding .}" >
-                    <TextBlock Text="{Binding Name}" />
-                </StackPanel>
-            </Border>
-        </DataTemplate>-->
-        <!--mvvm:ViewModelLocator.AutoWireViewModel="True"-->
-        <!--<ContentControl x:Key="DataBinding" Content="{Binding viewModel:AudioChannelMixerViewModel}" />-->
         <DataTemplate x:Key="CompositeVolumeLevelDataTemplate">
             <view:CompositeVolumeLevelView />
         </DataTemplate>
     </UserControl.Resources>
-    <!-- xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-         xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions" -->
-    <!--<UserControl.InputBindings>
-        <KeyBinding Key="D"
-                    Modifiers="Control"
-                    Command="{Binding DeleteCommand}" />
-    </UserControl.InputBindings>-->
-    <!--<i:Interaction.Triggers>
-        <i:EventTrigger EventName="Loaded">
-            <ei:CallMethodAction TargetObject="{Binding}" MethodName="LoadCustomers" />
-        </i:EventTrigger>
-    </i:Interaction.Triggers>-->
-    <DockPanel LastChildFill="True">
-        <view:InputPanelView DockPanel.Dock="Top"/>
-        <Grid DockPanel.Dock="Bottom" Height="Auto">
+    <Grid Height="Auto">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition MinHeight="50" Height="50"/>
+        </Grid.RowDefinitions>
+        <view:InputPanelView  Grid.Row="0"
+            Width="Auto"
+            Height="Auto"/>
+        <Grid Grid.Row="1"
+              Height="Auto"
+              Width="Auto">
             <Grid.RowDefinitions>
                 <RowDefinition MinHeight="300" />
-                <RowDefinition MinHeight="100" />
             </Grid.RowDefinitions>
-            <Grid Grid.Row="0" 
-                  ScrollViewer.VerticalScrollBarVisibility="Auto" 
-                  MinWidth="300"
-                  MinHeight="300">
+            <Grid 
+                Grid.Row="0" 
+                ScrollViewer.VerticalScrollBarVisibility="Auto"
+                Height="Auto">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition MinWidth="300" Width="Auto"/>
-                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <!--<view:CompositeVolumeLevelView DataContext="{Binding CompositeSourceVolumeLevel}"/>-->
-                <ListView Grid.Column="0"
-                      ItemsSource="{Binding AudioSources, UpdateSourceTrigger=PropertyChanged}" 
-                      ItemTemplate="{StaticResource CompositeVolumeLevelDataTemplate}" Panel.ZIndex="-3"/>
-                <view:MixerInputsView Grid.Column="1" DataContext="{Binding MixerVolumes}" />
+                <Grid Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="35"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Button Content="Add Audio" Command="{Binding AddAudio}"/>
+                    <ListView Grid.Row="1"
+                        MinWidth="500"
+                        ItemsSource="{Binding AudioSources, UpdateSourceTrigger=PropertyChanged}" 
+                        ItemTemplate="{StaticResource CompositeVolumeLevelDataTemplate}" Panel.ZIndex="-3"/>
+                </Grid>
+                <view:MixerOutputLevelView Grid.Column="1" DataContext="{Binding MixerVolumes}" />
             </Grid>
-            <StackPanel Grid.Row="1" />
         </Grid>
-    </DockPanel>
+        <StackPanel Grid.Row="2"/>
+    </Grid>
 </UserControl>

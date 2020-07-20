@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="AudioChannelMixer.View.MixerInputsView"
+﻿<UserControl x:Class="AudioChannelMixer.View.MixerOutputLevelView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -9,7 +9,7 @@
              xmlns:viewModel="clr-namespace:AudioChannelMixer.ViewModel"
              mvvm:ViewModelLocator.AutoWireViewModel="False"
              mc:Ignorable="d"
-             d:DataContext="{d:DesignInstance {x:Type viewModel:MixerInputsViewModel}, IsDesignTimeCreatable=True}">
+             d:DataContext="{d:DesignInstance {x:Type viewModel:MixerOutputLevelViewModel}, IsDesignTimeCreatable=True}">
     <UserControl.Resources>
         <system:Double x:Key="Padding">30</system:Double>
     </UserControl.Resources>
@@ -20,8 +20,8 @@
             <Expander.Header>
                 <Grid Width="Auto">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="35"/>
-                        <RowDefinition Height="35"/>
+                        <RowDefinition MinHeight="35"/>
+                        <RowDefinition MinHeight="35"/>
                     </Grid.RowDefinitions>
                     <Label Grid.Row="0" Content="Mixer"  Height="{DynamicResource Padding}"/>
                     <view:AudioVolumeLevelView 

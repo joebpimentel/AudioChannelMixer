@@ -1,12 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using AudioChannelMixer.Infrastrucure.Audio;
 
 namespace AudioChannelMixer.Services
 {
     public interface IAudioService
     {
-        IDictionary<string, string> MediaDictionary { get; }
+        /// <summary>
+        /// MediaDictionary, key = media name reference, value = media file name;
+        /// </summary>
+        IDictionary<Guid, string> MediaDictionary { get; }
 
-        string AddStreamFromFile(string fileName);
+        Guid AddStreamFromFile(string fileName);
+
+        void PlaySound(CachedAudio audio);
+
+        void AddMixerInput(IAudioSampleProvider audioProvider);
     }
 }

@@ -4,14 +4,14 @@ using Prism.Mvvm;
 
 namespace AudioChannelMixer.ViewModel
 {
-    public class MixerInputsViewModel : BindableBase, IVolumeLevelModel
+    public class MixerOutputLevelViewModel : BindableBase, IVolumeLevelModel
     {
         private static readonly bool isInDesignMode = DesignerProperties.GetIsInDesignMode(new DependencyObject());
         private IAudioVolumeLevelViewModel _leftChannel;
         private IAudioVolumeLevelViewModel _masterVolume;
         private IAudioVolumeLevelViewModel _rightChannel;
 
-        public MixerInputsViewModel()
+        public MixerOutputLevelViewModel()
         {
             if (isInDesignMode)
             {
@@ -36,7 +36,7 @@ namespace AudioChannelMixer.ViewModel
             }
         }
 
-        public MixerInputsViewModel((int level, string name) masterChannel, (int level, string name) leftChannel, (int level, string name) rightChannel)
+        public MixerOutputLevelViewModel((int level, string name) masterChannel, (int level, string name) leftChannel, (int level, string name) rightChannel)
         {
             MasterVolume = new AudioVolumeLevelViewModel(masterChannel);
             LeftChannel = new AudioVolumeLevelViewModel(leftChannel);

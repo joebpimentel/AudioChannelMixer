@@ -41,6 +41,27 @@ namespace AudioChannelMixer.ViewModel
                     ChannelName = "Master"
                 };
             }
+            else
+            {
+                SourceName = "Choose Media";
+                LeftChannel = new AudioVolumeLevelViewModel
+                {
+                    VolumeLevel = 50,
+                    ChannelName = "Left"
+                };
+
+                RightChannel = new AudioVolumeLevelViewModel
+                {
+                    VolumeLevel = 50,
+                    ChannelName = "Right"
+                };
+
+                MasterVolume = new AudioVolumeLevelViewModel
+                {
+                    VolumeLevel = 50,
+                    ChannelName = "Master"
+                };
+            }
         }
 
         public CompositeVolumeLevelViewModel(string source, (int level, string name) masterChannel, (int level, string name) leftChannel, (int level, string name) rightChannel)
@@ -83,7 +104,7 @@ namespace AudioChannelMixer.ViewModel
             set => SetProperty(ref _audio, value);
         }
 
-        public IAsyncCommand ChooseFile { get; private set; }
+        public IAsyncCommand ChooseFile { get; }
 
         private bool CanExecuteSubmit()
         {

@@ -1,11 +1,11 @@
 ﻿namespace AudioChannelMixer.View
 {
     /// <summary>
-    /// Interaction logic for MixerInputsView.xaml
+    /// Interaction logic for MixerOutputLevelView.xaml
     /// </summary>
-    public partial class MixerInputsView
+    public partial class MixerOutputLevelView
     {
-        public MixerInputsView()
+        public MixerOutputLevelView()
         {
             InitializeComponent();
         }

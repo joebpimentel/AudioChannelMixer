@@ -42,20 +42,28 @@ namespace AudioChannelMixer.Models
                         "File Selection",
                         MessageBoxButton.OK,
                         MessageBoxImage.Error);
-                    StreamId = string.Empty;
+                    StreamId = Guid.Empty;
                 }
                 else
                 {
-                    SetProperty(ref _fileName, value);
-                    var audio = new AudioFileReader(_fileName);
-                    var mixerProvider = new MixingSampleProvider(audio.WaveFormat);
-
                     StreamId = audioService.AddStreamFromFile(FileName);
+                    if (StreamId == Guid.Empty)
+                    {
+                        MessageBox.Show(
+                            $"Audio service could not add stream {FileName}",
+                            "File Selection",
+                            MessageBoxButton.OK,
+                            MessageBoxImage.Error);
+                    }
+                    else
+                    {
+                        SetProperty(ref _fileName, value);
+                    }
                 }
             }
         }
 
-        private string StreamId { get; set; }
+        private Guid StreamId { get; set; }
 
         private void LoadAudioFile(string fileName)
         {
